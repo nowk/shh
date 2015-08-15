@@ -41,8 +41,13 @@ vim +PluginInstall +qall
 mkdir ~/opt
 
 # basics to compile stuff
-sudo apt-get -y install libncurses-dev cmake
-sudo apt-get -y install software-properties-common python-dev python-pip
+sudo apt-get -y install \
+	build-essential \
+	cmake \
+	software-properties-common \
+	python-dev \
+	python-pip \
+	libncurses-dev
 
 # tig
 cd ~/opt \
