@@ -11,11 +11,11 @@ curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | 
 chsh -s $(which zsh)
 
 # dotfiles
-git clone https://github.com/nowk/prospect.git \
-	&& cd prospect/ \
+git clone https://github.com/nowk/prospect.git
+cd prospect/ \
 	&& git checkout pixel-2
-cd
-ln -s ~/prospect ~/.prospect \
+cd \
+	&& ln -s ~/prospect ~/.prospect \
 	&& ln -s ~/.prospect/git.config ~/.gitconfig \
 	&& ln -s ~/.prospect/git.ignore ~/.gitignore_global \
 	&& ln -s ~/.prospect/tmux ~/.tmux.conf \
@@ -37,24 +37,26 @@ sudo apt-get install vim-nox
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
 
-mkdir ~/opt \
-	&& cd ~/opt
+# make opt dir for sources
+mkdir ~/opt
 
+# basics to compile stuff
 sudo apt-get install libncurses-dev cmake
 sudo apt-get install software-properties-common python-dev python-pip
 
 # tig
-git clone https://github.com/jonas/tig.git \
-	&& cd tig \
-	&& make prefix=/usr/local \
-	&& sudo make install prefix=/usr/local
+cd ~/opt \
+	&& git clone https://github.com/jonas/tig.git
+cd tig \
+	&& make prefix=/usr/local
+sudo make install prefix=/usr/local
 
 # golang
 cd ~/opt \
 	&& git clone https://github.com/golang/go.git
 cd go \
-	&& git checkout go1.4.2 \
-	&& cd src \
+	&& git checkout go1.4.2
+cd src \
 	&& ./all.bash
 
 # finish vim; ycm
