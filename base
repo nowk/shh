@@ -1,0 +1,68 @@
+#!/bin/sh
+
+# installs base environment
+
+# given
+sudo apt-get update
+sudo apt-get install curl git tmux zsh
+
+# oh my zsh
+curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+chsh -s $(which zsh)
+
+# dotfiles
+git clone https://github.com/nowk/prospect.git \
+	&& cd prospect/ \
+	&& git checkout pixel-2
+cd
+ln -s ~/prospect ~/.prospect \
+	&& ln -s ~/.prospect/git.config ~/.gitconfig \
+	&& ln -s ~/.prospect/git.ignore ~/.gitignore_global \
+	&& ln -s ~/.prospect/tmux ~/.tmux.conf \
+	&& ln -s ~/.prospect/vim ~/.vim \
+	&& ln -s ~/.prospect/vimrc ~/.vimrc \
+	&& mv ~/.zshrc ~/.zshrc.before-ln-s \
+	&& ln -s ~/.prospect/zshrc ~/.zshrc \
+	&& ln -s ~/.prospect/zshrc.local ~/.zshrc.local \
+	&& ln -s ~/.prospect/oh-my-zsh/themes/normalt.zsh-theme ~/.oh-my-zsh/themes/normalt.zsh-theme
+
+# terminfos
+cd ~/.prospect/terminfo \
+	&& tic screen-256color-italic.terminfo
+	&& tic xterm-256color-italic.terminfo
+
+# vim
+sudo apt-get install vim-nox
+
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+vim +PluginInstall +qall
+
+mkdir ~/opt \
+	&& cd ~/opt
+
+sudo apt-get install libncurses-dev cmake
+sudo apt-get install software-properties-common python-dev python-pip
+
+# tig
+git clone https://github.com/jonas/tig.git \
+	&& cd tig \
+	&& make prefix=/usr/local \
+	&& sudo make install prefix=/usr/local
+
+# golang
+cd ~/opt \
+	&& git clone https://github.com/golang/go.git
+cd go \
+	&& git checkout go1.4.2 \
+	&& cd src \
+	&& ./all.bash
+
+# finish vim; ycm
+cd ~/.vim/bundle/YouCompleteMe \
+	&& ./install.sh --clang-completer --gocode-completer
+
+
+# pixel shares
+if [ ! -f /etc/crouton/shares ] ; then
+	sudo sh -c 'echo "download/devs ~/devs" >> /etc/crouton/shares'
+fi
