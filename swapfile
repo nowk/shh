@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# swap on file
+# http://serverfault.com/questions/218750/why-dont-ec2-ubuntu-images-have-swap/279632#279632
+sudo dd if=/dev/zero of=/var/swapfile bs=1M count=4097 \
+	&& sudo chmod 600 /var/swapfile \
+	&& sudo mkswap /var/swapfile \
+	&& echo /var/swapfile none swap defaults 0 0 | sudo tee -a /etc/fstab \
+	&& sudo swapon -a
+
