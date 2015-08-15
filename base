@@ -4,7 +4,7 @@
 
 # given
 sudo apt-get update
-sudo apt-get install curl git tmux zsh
+sudo apt-get -y install curl git tmux zsh
 
 # oh my zsh
 curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
@@ -32,7 +32,7 @@ cd ~/.prospect/terminfo \
 	&& tic xterm-256color-italic.terminfo
 
 # vim
-sudo apt-get install vim-nox
+sudo apt-get -y install vim-nox
 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
@@ -41,8 +41,8 @@ vim +PluginInstall +qall
 mkdir ~/opt
 
 # basics to compile stuff
-sudo apt-get install libncurses-dev cmake
-sudo apt-get install software-properties-common python-dev python-pip
+sudo apt-get -y install libncurses-dev cmake
+sudo apt-get -y install software-properties-common python-dev python-pip
 
 # tig
 cd ~/opt \
