@@ -55,6 +55,7 @@ cd ~/opt \
 cd tig \
 	&& make prefix=/usr/local
 sudo make install prefix=/usr/local
+rm -rf tig
 
 # golang
 cd ~/opt \
