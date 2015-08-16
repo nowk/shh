@@ -73,3 +73,11 @@ cd ~/.vim/bundle/YouCompleteMe \
 if [ ! -f /etc/crouton/shares ] ; then
 	sudo sh -c 'echo "download/devs ~/devs" >> /etc/crouton/shares'
 fi
+
+# btsync
+cd ~/opt \
+	&& wget https://download-cdn.getsync.com/stable/linux-x64/BitTorrent-Sync_x64.tar.gz
+mkdir btsync \
+	&& tar zxvf BitTorrent-Sync_x64.tar.gz -C btsync \
+	&& rm BitTorrent-Sync_x64.tar.gz
+sudo ln -s $HOME/opt/btsync/btsync /usr/local/bin/btsyn
