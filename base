@@ -44,7 +44,6 @@ mkdir ~/opt
 sudo apt-get -y install \
 	build-essential \
 	cmake \
-	dh-autoreconf \
 	software-properties-common \
 	python-dev \
 	python-pip \
